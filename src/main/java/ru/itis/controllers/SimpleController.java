@@ -65,11 +65,11 @@ public class SimpleController {
             point.setY((point.getY() - yMin) * yScale);
         }
 
-        Circle circle = positionChecker.getLastPosition();
-        points[3].setX(circle.center[0]);
-        points[3].setY(circle.center[1]);
+        Point movingPoint = positionChecker.getLastPosition();
+        points[3].setX(movingPoint.getX() * xScale);
+        points[3].setY(movingPoint.getY() * yScale);
 
-        System.out.println(Arrays.toString(circle.center));
+//        System.out.println(Arrays.toString(circle.center));
         return points;
     }
 }
