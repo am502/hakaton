@@ -9,6 +9,6 @@ public class Subcriber {
         client.setCallback(new SimpleMqttCallBack());
         client.connect();
 
-        client.subscribe("iot-data");
+        client.subscribe("iot-data/1");
     }
 }
