@@ -10,5 +10,8 @@ public class Subcriber {
         client.connect();
 
         client.subscribe("iot-data/1");
+        client.subscribe("iot-data/2");
+        client.subscribe("iot-data/3");
+        client.subscribe("iot-data/4");
     }
 }
