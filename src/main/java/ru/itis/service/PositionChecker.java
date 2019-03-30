@@ -9,12 +9,12 @@ import java.util.List;
 
 public class PositionChecker {
     private DistanceDao distanceDao;
-    public static double x1;
-    public static double y1;
-    public static double x2;
-    public static double y2;
-    public static double x3;
-    public static double y3;
+    public static double x1 = 0;
+    public static double y1 = 0;
+    public static double x2 = 4.4;
+    public static double y2 = 0;
+    public static double x3 = 4.4;
+    public static double y3 = 7;
 
     public PositionChecker() {
         distanceDao = new DistanceDao();

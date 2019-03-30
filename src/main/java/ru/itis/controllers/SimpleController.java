@@ -7,6 +7,7 @@ import ru.itis.models.Circle;
 import ru.itis.models.Point;
 import ru.itis.service.PositionChecker;
 
+import java.util.Arrays;
 import java.util.Random;
 
 @RestController
@@ -15,31 +16,26 @@ public class SimpleController {
 
     @RequestMapping(value = "/point", method = RequestMethod.GET)
     public Point[] getRandomPoint() {
-        Point[] points = new Point[5];
+        Point[] points = new Point[4];
 
         points[0] = Point.builder()
-                .x(312)
-                .y(68)
+                .x(0)
+                .y(0)
                 .build();
 
         points[1] = Point.builder()
-                .x(313)
-                .y(79)
+                .x(4.4)
+                .y(0)
                 .build();
 
         points[2] = Point.builder()
-                .x(321)
-                .y(67)
+                .x(4.4)
+                .y(7)
                 .build();
 
         points[3] = Point.builder()
-                .x(321)
-                .y(80)
-                .build();
-
-        points[4] = Point.builder()
-                .x(317)
-                .y(73)
+                .x(2)
+                .y(3.5)
                 .build();
 
         double xMin = Integer.MAX_VALUE;
@@ -70,9 +66,10 @@ public class SimpleController {
         }
 
         Circle circle = positionChecker.getLastPosition();
-        points[4].setX(circle.center[0]);
-        points[4].setY(circle.center[1]);
+        points[3].setX(circle.center[0]);
+        points[3].setY(circle.center[1]);
 
+        System.out.println(Arrays.toString(circle.center));
         return points;
     }
 }

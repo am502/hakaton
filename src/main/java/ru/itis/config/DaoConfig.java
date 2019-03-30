@@ -11,7 +11,7 @@ public class DaoConfig {
         SimpleDriverDataSource dataSource = new SimpleDriverDataSource();
         dataSource.setDriverClass(Driver.class);
         dataSource.setUsername("postgres");
-        dataSource.setPassword("postgres");
+        dataSource.setPassword("postgres1");
         dataSource.setUrl("jdbc:postgresql://localhost:5432/hack");
         return dataSource;
     }

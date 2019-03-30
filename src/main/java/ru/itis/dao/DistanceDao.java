@@ -15,7 +15,7 @@ public class DistanceDao {
     private static final String GET_LAST_DATA_SQL = "SELECT device_id, dist FROM distance " +
             "   WHERE data_id = (SELECT max(data_id) FROM distance d2 " +
             "       WHERE EXISTS(SELECT 1 FROM distance d3 " +
-            "           WHERE d2.data_id = d3.data_id HAVING count(device_id) = 4)) ORDER BY(device_id);";
+            "           WHERE d2.data_id = d3.data_id HAVING count(device_id) = 3)) ORDER BY(device_id);";
     private static final String GET_MAX_DATA_ID = "SELECT max(data_id) FROM distance;";
 
     public DistanceDao() {
