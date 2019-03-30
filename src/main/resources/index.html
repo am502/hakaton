@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html>
+<body>
+
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+<img hidden id="node" src="https://www.resetera.com/data/avatars/m/38/38789.jpg?1516562772"/>
+
+<canvas id="canvas" width="1280" height="720"></canvas>
+
+<script>
+    let canvas = document.getElementById("canvas");
+    let ctx = canvas.getContext("2d");
+    let img = document.getElementById("node");
+
+    setInterval(function () {
+        load();
+    }, 100);
+
+    function load() {
+        $.getJSON("http://localhost:8080/point", function (array) {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            array.forEach(function (entry) {
+                ctx.drawImage(img, entry.x, entry.y);
+            })
+        });
+    }
+</script>
+</body>
+</html>
