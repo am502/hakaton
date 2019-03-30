@@ -13,7 +13,10 @@ public class DistanceDao {
     private static final String SAVE_DATA_SQL = "INSERT INTO distance " +
             "(device_id, data_id, dist) VALUES (?, ?, ?)";
     private static final String GET_LAST_DATA_SQL = "SELECT device_id, dist FROM distance " +
-            "WHERE data_id = (SELECT max(data_id) FROM distance WHERE count(device_id) = 4);";
+            "   WHERE data_id = (SELECT max(data_id) FROM distance d2 " +
+            "       WHERE EXISTS(SELECT 1 FROM distance d3 " +
+            "           WHERE d2.data_id = d3.data_id HAVING count(device_id) = 4)) ORDER BY(device_id);";
+    private static final String GET_MAX_DATA_ID = "SELECT max(data_id) FROM distance;";
 
     public DistanceDao() {
         jdbcTemplate = new JdbcTemplate(DaoConfig.getDataSource());
@@ -27,5 +30,9 @@ public class DistanceDao {
 
     public List<Distance> getLastDistances() {
         return jdbcTemplate.query(GET_LAST_DATA_SQL, new BeanPropertyRowMapper<>(Distance.class));
+    }
+
+    public int getMaxDataId(){
+        return jdbcTemplate.queryForObject(GET_MAX_DATA_ID, int.class);
     }
 }

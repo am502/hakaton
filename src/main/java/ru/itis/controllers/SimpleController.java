@@ -3,12 +3,15 @@ package ru.itis.controllers;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import ru.itis.models.Circle;
 import ru.itis.models.Point;
+import ru.itis.service.PositionChecker;
 
 import java.util.Random;
 
 @RestController
 public class SimpleController {
+    private static PositionChecker positionChecker = new PositionChecker();
 
     @RequestMapping(value = "/point", method = RequestMethod.GET)
     public Point[] getRandomPoint() {
@@ -66,9 +69,9 @@ public class SimpleController {
             point.setY((point.getY() - yMin) * yScale);
         }
 
-        Random random = new Random();
-        points[4].setX(random.nextInt(10) * xScale);
-        points[4].setY(random.nextInt(10) * yScale);
+        Circle circle = positionChecker.getLastPosition();
+        points[4].setX(circle.center[0]);
+        points[4].setY(circle.center[1]);
 
         return points;
     }
