@@ -4,3 +4,5 @@ CREATE TABLE distance (
   data_id INT,
   dist DECIMAL
 );
+
+CREATE INDEX idx ON distance (data_id);
